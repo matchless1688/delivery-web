@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript">
 	       function doDelete(id)
 		   {
-		      $.post("<%=basePath%>/admin/config_delete.php", {sequenceId:id},
+		      $.post("<%=basePath%>/admin/box_delete.php", {id:id},
 			   function(data){
 			     $('#'+id).fadeOut().fadeIn().fadeOut();
 		       });
@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   
 		    function doSave()
 		   {
-		      $.post("<%=basePath%>/admin/config_save.php", {domain:$('#A_domain').val(),key:$('#A_key').val(),value:$('#A_value').val()},
+		      $.post("<%=basePath%>/admin/box_save.php", {domain:$('#A_domain').val(),key:$('#A_key').val(),value:$('#A_value').val()},
 			   function(data){
 			      if(data=='0')
 			      {
@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			       }else
 			       {
 			         var t = "<tr id='"+data+"'><td>"+$('#A_domain').val()+"</td><td>"+$('#A_key').val()+"</td><td>"+$('#A_value').val()+"</td><td><a href='javascript:doDelete("+data+")'>删除</a></td></tr>";
-			         $(t).appendTo('#configTable').fadeOut().fadeIn();
+			         $(t).appendTo('#boxTable').fadeOut().fadeIn();
 			       }
 			       
 			      
@@ -46,37 +46,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			     <%@include file="menu.jsp"%>
 	            <div class="rightcontent"> 
 	            <div class="controlpanel">
-		            <form action="<%=basePath%>/admin/config_search.php" method="post" id="searchForm">
+		            <form action="<%=basePath%>/admin/box_search.php" method="post" id="searchForm">
 		            <input type="hidden" name="currentPage" id="currentPage"/>
-		            <label>域</label><input type="text" name="config.domain"  value="${config.domain }"/>
+		            <label>类型</label><input type="text" name="box.type"  value="${box.type }"/>
 		            <a class="simple_button" style="margin-left: 50px;" onclick="document.getElementById('searchForm').submit()">查询</a>
 		            </form>
 	            </div>
-	            <div style="height: 60px;line-height: 60px;border: 1px solid #14A7D5;;width: 99%;">
-		             
-		            <input type="hidden" name="currentPage" id="currentPage"/>
-		            <label style="padding-left: 10px;">域</label><input type="text" id="A_domain" style="height:35px;width:150px;" />
-		            <label style="padding-left: 10px;">键</label><input type="text" id="A_key"  style="height:35px;width:150px;"/>
-		            <label style="padding-left: 10px;">值</label><input type="text" id="A_value"  style="height:35px;width:500px;"/>
-		            <a class="simple_button" style="margin-left: 15px;" onclick="doSave()">添加</a>
-	            </div>
-		           <table style="margin-top: 30px;" class="utable" id="configTable">
+		           <table style="margin-top: 30px;" class="utable" id="boxTable">
 	            	<thead>
 		                <tr>
-		                    <th width="15%">域</th>
-		                    <th width="15%">键</th>
-		                    <th width="60%">值</th>
+		                    <th width="15%">长度</th>
+		                    <th width="15%">高度</th>
+		                    <th width="60%">宽度</th>
+		                    <th width="60%">类型</th>
 		                    <th width="10%">操作</th>
 		                </tr>
 	                </thead>
 	                <tbody id="firstpublist">
-	                    <c:forEach var="config" items="${dataList}">          
-		                <tr id="${config.sequenceId}">	
-		                   <td>${config.domain }</td>
-		                   <td>${config.key }</td>
-		                   <td>${config.value }</td>
+	                    <c:forEach var="box" items="${dataList}">          
+		                <tr id="${box.length}">	
+		                   <td>${box.height}</td>
+		                   <td>${box.width }</td>
+		                   <td>${box.type }</td>
 		                   <td>
-			                   <a href="javascript:doDelete(${config.sequenceId})">删除</a>
+			                   <a href="javascript:doDelete(${box.id})">删除</a>
 		                   </td>
 		                </tr>
 		                </c:forEach>
@@ -95,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <%@include file="foot.jsp" %>
 		 <script>
-		  $('#configMenu').addClass('active');
+		  $('#boxMenu').addClass('active');
 		</script>
 	</body>
 </html>

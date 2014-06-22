@@ -78,7 +78,7 @@ public class APIUserAction extends SuperAction implements ModelDriven<User>{
 	
 	public String count() throws IOException
 	{
-		int count = userServiceImpl.queryUserAmount();
+		int count = userServiceImpl.queryUserAmount(user);
 		response.getWriter().print(count);
 		return null;
 	}

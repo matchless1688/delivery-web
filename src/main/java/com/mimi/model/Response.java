@@ -10,6 +10,9 @@ public class Response implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int key = 0;
     private User user;
+    private Station station;
+    private Box box;
+    private Express express;
     private Page page;
     private List<?> dataList;
     private String message;
@@ -52,6 +55,30 @@ public class Response implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Station getStation() {
+		return station;
+	}
+
+	public void setStation(Station station) {
+		this.station = station;
+	}
+
+	public Box getBox() {
+		return box;
+	}
+
+	public void setBox(Box box) {
+		this.box = box;
+	}
+
+	public Express getExpress() {
+		return express;
+	}
+
+	public void setExpress(Express express) {
+		this.express = express;
 	}
 	 
 }

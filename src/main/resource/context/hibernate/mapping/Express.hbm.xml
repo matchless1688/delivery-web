@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mimi.model">
+	<class name="Express" table="tb_express" lazy="false">
+		<id name="id" type="java.lang.Integer" column="id">
+		</id>
+		<property name="barCode" column="barCode" type="java.lang.String" />
+		<property name="tdjh" column="tdjh" type="java.lang.String" />
+		<property name="status" column="status" type="java.lang.String" />
+		<property name="dateTime" column="dateTime" type="java.lang.String" />
+		<property name="deliTel" column="deliTel" type="java.lang.String" />
+		<property name="stationId" column="stationId" type="java.lang.Integer" />
+		<property name="boxId" column="boxId" type="java.lang.Integer" />
+		<property name="expressCompanyCode" column="expressCompanyCode" type="java.lang.String" />
+		<property name="ownerPhone" column="ownerPhone" type="java.lang.String" />
+	</class>
+</hibernate-mapping>

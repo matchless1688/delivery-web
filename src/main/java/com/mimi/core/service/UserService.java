@@ -18,7 +18,7 @@ public abstract interface UserService {
 
 	public void updateUser(User User);
 
-	public int queryUserAmount();
+	public int queryUserAmount(User user);
 
 	public User login(User user);
 

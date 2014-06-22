@@ -16,12 +16,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   function gotoPage(number)
 	       {
 	         $('#currentPage').val(number);
-	         $('#searchForm').attr('action','<%=basePath%>/admin/comment_manage.php');
+	         $('#searchForm').attr('action','<%=basePath%>/admin/express_manage.php');
 	          document.getElementById("searchForm").submit();
 	       }
 	       function doDelete(id)
 		   {
-		      $.getJSON("<%=basePath%>/admin/comment_delete.php", {commentId:id},
+		      $.getJSON("<%=basePath%>/admin/express_delete.php", {id:id},
 			   function(data){
 			     $('#'+id).fadeOut().fadeIn().fadeOut();
 		       });
@@ -36,37 +36,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			     <%@include file="menu.jsp"%>
 	            <div class="rightcontent"> 
 	            <div class="controlpanel">
-		            <form action="<%=basePath%>/admin/comment_search.php" method="post" id="searchForm" >
+		            <form action="<%=basePath%>/admin/express_search.php" method="post" id="searchForm" >
 		            <input type="hidden" name="currentPage" id="currentPage"/>
-		            <label>用户ID</label><input type="text" name="comment.userId" id="userId" value="${comment.userId }"/>
-		            <label>用户名称</label> <input type="text" name="comment.alias" id="alias" value="${comment.alias }"/>
-		            <label>内容ID</label> <input type="text" name="comment.matterId" id="commentId" value="${comment.matterId }"/>
+		            <label>BarCode</label><input type="text" name="express.barCode" id="barCode" value="${express.barCode }"/>
+		            <label>快递公司代码</label> <input type="text" name="express.expressCompanyCode" id="expressCompanyCode" value="${express.expressCompanyCode }"/>
+		            <label>收件人手机</label> <input type="text" name="express.ownerPhone" id="ownerPhone" value="${express.ownerPhone }"/>
 		            <a class="simple_button" style="margin-left: 50px;" onclick="document.getElementById('searchForm').submit()">查询</a>
 		            </form>
 	            </div>
 		           <table style="margin-top: 40px;" class="utable">
 	            	<thead>
 		                <tr>
-		                    <th width="10%">用户ID</th>
-		                    <th width="10%">主题ID</th>
-		                    <th width="60%">内容</th>
-		                    <th width="10%">回复时间</th>
-		                    <th width="10%">操作</th>
+		                    <th width="10%">BarCode</th>
+		                    <th width="10%">tdjh</th>
+		                    <th width="60%">状态</th>
+		                    <th width="10%">发送时间</th>
+		                    <th width="10%">收件人手机</th>
 		                </tr>
 	                </thead>
 	                <tbody id="firstpublist">
-	                    <c:forEach var="comment" items="${page.dataList}">          
-		                <tr id="${comment.commentId}">	
-		                   <td>${comment.userId }</td>
-		                   <td>${comment.matterId }</td>
-		                   <td align="left" >
-		                   
-		                   ${comment.content }
-		                   </td>
-		                  
-		                   <td>${comment.timestamp }</td>
+	                    <c:forEach var="express" items="${page.dataList}">          
+		                <tr id="${express.barCode}">	
+		                   <td>${express.tdjh }</td>
+		                   <td>${express.status }</td>
+		                   <td>${express.dateTime }</td>
+		                   <td>${express.ownerPhone }</td>
 		                   <td>
-			                   <a href="javascript:doDelete(${comment.commentId})">删除</a>
+			                   <a href="javascript:doDelete(${express.id})">删除</a>
 		                   </td>
 		                </tr>
 		                </c:forEach>
@@ -89,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <%@include file="foot.jsp" %>
 		 <script>
-		  $('#commentMenu').addClass('active');
+		  $('#expressMenu').addClass('active');
 		</script>
 	</body>
 </html>

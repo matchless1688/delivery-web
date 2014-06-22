@@ -37,7 +37,10 @@
 		
     
 	<!--映射文件配置-->
-	<mapping resource="context/hibernate/maping/User.hbm.xml" />
+	<mapping resource="context/hibernate/mapping/User.hbm.xml" />
+	<mapping resource="context/hibernate/mapping/Station.hbm.xml"/>
+	<mapping resource="context/hibernate/mapping/Box.hbm.xml"/>
+	<mapping resource="context/hibernate/mapping/Express.hbm.xml"/>
 </session-factory>
 
 </hibernate-configuration>

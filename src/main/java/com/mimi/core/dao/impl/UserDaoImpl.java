@@ -13,8 +13,7 @@ import com.mimi.model.Page;
 import com.mimi.model.User;
 import com.mimi.util.SystemUtil;
 
-
-public class UserDaoImpl extends HibernateDaoSupport{
+public class UserDaoImpl extends HibernateDaoSupport {
 
 	public void addOneUser(User User) {
 		getHibernateTemplate().save(User);
@@ -26,8 +25,6 @@ public class UserDaoImpl extends HibernateDaoSupport{
 		user.setId(id);
 		getHibernateTemplate().delete(user);
 	}
-
-	 
 
 	public User queryUser(int id) {
 		Assert.notNull(id, "queryUser>id");
@@ -48,10 +45,12 @@ public class UserDaoImpl extends HibernateDaoSupport{
 		getHibernateTemplate().merge(user);
 	}
 
-
-	public boolean aliasIsSingle(String userName,String id) {
-		Criteria c = getSession().createCriteria(User.class).add(Restrictions.eq("userName", userName)).add(Restrictions.ne("id", id));
-		List<User> list=c.list();
+	public boolean aliasIsSingle(String userName, String id) {
+		Criteria c = getSession().createCriteria(User.class)
+				.add(Restrictions.eq("userName", userName))
+				.add(Restrictions.ne("id", id));
+		@SuppressWarnings("unchecked")
+		List<User> list = c.list();
 		if (!list.isEmpty()) {
 			return false;
 		}
@@ -59,42 +58,37 @@ public class UserDaoImpl extends HibernateDaoSupport{
 	}
 
 	public User queryByIMEI(String imei) {
-		Criteria c = getSession().createCriteria(User.class).add(Restrictions.eq("imei", imei));
+		Criteria c = getSession().createCriteria(User.class).add(
+				Restrictions.eq("imei", imei));
 		return (User) c.uniqueResult();
 	}
 
 	public Page queryUserList(User user, Page page) {
-		 
-		Criteria criteria = mapingParam( user);
-	    criteria.setFirstResult((page.getCurrentPage() - 1) * page.size);
-	    criteria.setMaxResults(page.size);
-	    criteria.addOrder(Order.desc(page.getOrder()));
-	    try{
-	      page.setDataList(criteria.list());
-	    }catch(Exception e)
-	    {
-	    	e.printStackTrace();
-	    }
-	    return page;
+
+		Criteria criteria = mapingParam(user);
+		criteria.setFirstResult((page.getCurrentPage() - 1) * page.size);
+		criteria.setMaxResults(page.size);
+		criteria.addOrder(Order.desc(page.getOrder()));
+		try {
+			page.setDataList(criteria.list());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return page;
 	}
+
 	public int queryUserAmount(User user) {
-		 Criteria criteria = mapingParam( user);
-		 return Integer.valueOf(criteria.setProjection(Projections.rowCount()).uniqueResult().toString());
+		Criteria criteria = mapingParam(user);
+		return Integer.valueOf(criteria.setProjection(Projections.rowCount())
+				.uniqueResult().toString());
 	}
-	private Criteria mapingParam(User user)
-	  {
-	    Criteria criteria = getSession().createCriteria(User.class);
-	    if (!SystemUtil.isEmpty(user.getUserName()))
-	    {
-	      criteria.add(Restrictions.eq("userName", user.getUserName()));
-	    }
-	    if (!SystemUtil.isEmpty(user.getId()))
-	    {
-	      criteria.add(Restrictions.eq("id",user.getId()));
-	    }
-	    return criteria;
-	  }
 
-
+	private Criteria mapingParam(User user) {
+		Criteria criteria = getSession().createCriteria(User.class);
+		if (!SystemUtil.isEmpty(user.getUserName())) {
+			criteria.add(Restrictions.eq("userName", user.getUserName()));
+		}
+		return criteria;
+	}
 
 }

@@ -39,7 +39,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <div class="controlpanel">
 		            <form action="<%=basePath%>/admin/user_search.php" method="post" id="searchForm">
 		            <input type="hidden" name="currentPage" id="currentPage"/>
-		            <label>用户ID</label><input type="text" name="user.id"  value="${user.id}"/>
 		            <label>用户名称</label> <input type="text" name="user.userName" value="${user.userName}"/>
 		            <label>手机号码</label> <input type="text" name="user.telPhone"  value="${user.telPhone}"/>
 		            <a class="simple_button" style="margin-left: 50px;" onclick="document.getElementById('searchForm').submit()">查询</a>
@@ -48,7 +47,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		           <table style="margin-top: 40px;" class="utable">
 	            	<thead>
 		                <tr>
-		                    <th>用户ID</th>
 		                    <th>用户名称</th>
 		                    <th>手机号码</th>
 		                    <th>状态</th>
@@ -58,7 +56,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                <tbody id="firstpublist">
 	                    <c:forEach var="user" items="${page.dataList}">          
 		                <tr id="${user.id}">	
-		                   <td>${user.id }</td>
 		                   <td>${user.userName }</td>
 		                   <td>${user.telPhone }</td>
 		                   <td>${user.status }</td>

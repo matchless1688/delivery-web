@@ -19,5 +19,5 @@ public abstract interface StationService {
 
 	public void updateStation(Station station);
 
-	public int queryStationAmount();
+	public int queryStationAmount(Station station);
 }

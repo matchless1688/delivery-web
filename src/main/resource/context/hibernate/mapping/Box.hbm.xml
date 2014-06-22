@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mimi.model">
+	<class name="Box" table="tb_box" lazy="false">
+		<id name="id" type="java.lang.Integer" column="id">
+		</id>
+		<property name="length" column="length" type="java.lang.String" />
+		<property name="height" column="height" type="java.lang.String" />
+		<property name="width" column="width" type="java.lang.String" />
+		<property name="status" column="status" type="java.lang.String" />
+		<property name="type" column="type" type="java.lang.String" />
+		<property name="stationId" column="stationId" type="java.lang.Integer" />
+	</class>
+</hibernate-mapping>

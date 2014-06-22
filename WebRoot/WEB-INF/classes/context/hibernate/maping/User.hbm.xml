@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mimi.model">
+	<class name="User" table="tb_user" lazy="false">
+		<id name="id" type="java.lang.Integer" column="id">
+		</id>
+		<property name="userName" column="userName" type="java.lang.String" />
+		<property name="telPhone" column="telPhone" type="java.lang.String" />
+		<property name="pwd" column="pwd" type="java.lang.String" />
+		<property name="type" column="type" type="java.lang.Integer" />
+		<property name="status" column="status" type="java.lang.Integer" />
+		<property name="companyId" column="companyId" type="java.lang.Integer" />
+		<property name="info" column="info" type="java.lang.String" />
+	</class>
+</hibernate-mapping>

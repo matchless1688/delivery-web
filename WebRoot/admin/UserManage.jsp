@@ -42,6 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            <label>用户名称</label> <input type="text" name="user.userName" value="${user.userName}"/>
 		            <label>手机号码</label> <input type="text" name="user.telPhone"  value="${user.telPhone}"/>
 		            <a class="simple_button" style="margin-left: 50px;" onclick="document.getElementById('searchForm').submit()">查询</a>
+		            <a class="simple_button" style="margin-left: 50px;" href="<%=basePath%>/admin/UserAdd.jsp" >添加</a>
 		            </form>
 	            </div>
 		           <table style="margin-top: 40px;" class="utable">

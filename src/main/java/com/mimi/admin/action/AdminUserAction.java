@@ -61,6 +61,17 @@ public class AdminUserAction extends SuperAction implements ModelDriven<User> {
 		response.getWriter().print(1);
 	}
 	
+	public String add() {
+		userServiceImpl.addOneUser(user);
+		user = new User();
+		Page page = new Page();
+		page.setOrder("id");
+		userServiceImpl.queryUserList(user, page);
+		request.setAttribute("page", page);
+		request.setAttribute("user", user);
+		return "manage";
+	}
+	
 	public User getModel() {
 		return user;
 	}

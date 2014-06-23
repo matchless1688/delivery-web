@@ -65,3 +65,12 @@ border-top: 1px solid #CCC;
  .controlpanel input{
    height:35px;
 }
+
+.controlpanel_add{
+    height: 100%;
+	line-height: 80px;
+	border: 1px solid #14A7D5;
+	margin-right: 10px;
+	width: 100%;
+    background: url(../image/rcontentbg.png) repeat;
+}
